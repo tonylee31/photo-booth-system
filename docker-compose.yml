@@ -1,0 +1,54 @@
+version: "3.9"
+services:
+  photo-booth-api:
+     #build: ./photo-booth-api-server
+     build: 
+        context: ./photo-booth-api-server
+        dockerfile: Dockerfile
+     image: tonylee31/photo-booth-api:0.0.1
+     ports:
+      - 8080:8080
+     container_name: photo-booth-api
+  photo-booth-rabbit-mq:
+     #build: ./photo-booth-rabbit-mq-server
+     build: 
+        context: ./photo-booth-rabbit-mq-server
+        dockerfile: Dockerfile
+     image: tonylee31/photo-booth-rabbit-mq-server:0.0.1
+     ports:
+      - 5672:5672
+      - 15672:15672
+     environment:
+      - "RABBITMQ_DEFAULT_USER=admin"
+      - "RABBITMQ_DEFAULT_PASS=123456"
+     volumes:
+      - photo-booth-rabbit-mq-volume:/var/lib/rabbitmq    # use a volume to store the data
+     container_name: photo-booth-rabbit-mq
+     hostname: photo-booth-rabbit-mq                      # specify your hostname here
+     networks:
+      - messaging
+  photo-booth-cpus:
+     #build: ./photo-booth-cups-server
+     build: 
+        context: ./photo-booth-cups-server
+        dockerfile: Dockerfile
+     image: tonylee31/photo-booth-cups-server:0.0.1
+     ports:
+      - 631:631
+      - 5353:5353
+     environment:
+      - "CUPSADMIN=admin"
+      - "CUPSPASSWORD=123456"
+      - "TZ=Asia/Hong_Kong"
+      - "DEBIAN_FRONTEND=noninteractive"
+     volumes:
+      - photo-booth-cpus-volume:/etc/cups                 # use a volume to store the data
+     container_name: photo-booth-cpus
+volumes:
+  photo-booth-rabbit-mq-volume:
+    driver: local
+  photo-booth-cpus-volume:
+    driver: local
+networks: 
+    messaging:
+      driver: bridge
