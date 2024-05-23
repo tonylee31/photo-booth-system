@@ -1,6 +1,6 @@
 ### For Development : Begin ###
 
-- Docker Build (Springboot API)
+- Docker Build (Springboot API)__
 docker build -t tonylee31/photo-booth-api:0.0.1 .
 
 - Push Image to Docker Hub (Springboot API)
