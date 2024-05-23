@@ -36,8 +36,7 @@ docker run --name photo-booth-cups -p 631:631 -d tonylee31/photo-booth-cups-serv
 ### For Operation : Begin ### 
 
 -- Start containers
-# Background and Force docker-compose not to stop and recreate the containers
-docker-compose up -d --no-recreate 
+docker-compose up -d
 
 -- Stop containers
 docker-compose stop
