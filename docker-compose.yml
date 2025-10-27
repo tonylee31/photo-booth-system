@@ -1,4 +1,4 @@
-version: "3.9"
+#version: "3.9"
 services:
   photo-booth-api:
      #build: ./photo-booth-api-server
