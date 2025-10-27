@@ -30,7 +30,7 @@ services:
      hostname: photo-booth-rabbit-mq                      # specify your hostname here
      networks:
       - messaging
-  photo-booth-cpus:
+  photo-booth-cups:
      #build: ./photo-booth-cups-server
      build: 
         context: ./photo-booth-cups-server

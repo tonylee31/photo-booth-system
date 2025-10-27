@@ -5,15 +5,10 @@ LABEL maintainer="tonylee31@yahoo.com.hk"
 
 
 # ENV variables
-ENV DEBIAN_FRONTEND noninteractive
-ENV TZ "Asia/Hong_Kong"
-ENV CUPSADMIN admin
-ENV CUPSPASSWORD 123456
-
-
-# Expore the port number
-EXPOSE 631
-EXPOSE 5353/udp
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ="Asia/Hong_Kong"
+ENV CUPSADMIN=admin
+ENV CUPSPASSWORD=123456
 
 
 # Install dependencies
@@ -36,6 +31,11 @@ RUN apt-get update -qq  && apt-get upgrade -qqy \
 	net-tools \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+	
+	
+# Expore the port number
+EXPOSE 631
+EXPOSE 5353/udp
 
 
 # Baked-in config file changes
@@ -52,10 +52,10 @@ RUN sed -i 's/Listen localhost:631/Listen 0.0.0.0:631/' /etc/cups/cupsd.conf && 
 RUN cp -rp /etc/cups /etc/cups-bak
 VOLUME [ "/etc/cups" ]
 
-
 COPY source/entrypoint.sh /
-RUN chmod +x entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+RUN chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]
 
 
 ## sudo docker run -d -p 631:631 -v /var/run/dbus:/var/run/dbus --name cupsd olbat/cupsd

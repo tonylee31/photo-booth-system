@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -ex
 
 
 if [ $(grep -ci $CUPSADMIN /etc/shadow) -eq 0 ]; then
@@ -19,5 +19,5 @@ fi
 
 exec /usr/sbin/cupsd -f
 
-cupsctl WebInterface=yes
-cupsctl --share-printers
+#cupsctl WebInterface=yes
+#cupsctl --share-printers
