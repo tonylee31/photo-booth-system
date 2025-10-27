@@ -32,6 +32,8 @@ RUN apt-get update -qq  && apt-get upgrade -qqy \
     hp-ppd \
     hplip \
     avahi-daemon \
+	iputils-ping \
+	net-tools \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

@@ -12,6 +12,7 @@ docker run --name photo-booth-mq -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT
 
 # Deploy CUPS Server
 - Docker Build (CUPS)<br />
+docker build --progress=plain --no-cache -t tonylee31/photo-booth-cups-server:0.0.1 .
 docker build -t tonylee31/photo-booth-cups-server:0.0.1 .
 
 - Push Image to Docker Hub (CUPS)<br />
@@ -19,6 +20,13 @@ docker push tonylee31/photo-booth-cups-server:0.0.1
 
 - Run the Docker (CUPS)<br />
 docker run --name photo-booth-cups -p 631:631 -d tonylee31/photo-booth-cups-server:0.0.1
+docker run --network=host --name photo-booth-cups -p 631:631 -d tonylee31/photo-booth-cups-server:0.0.1
+docker run --network=bridge --name photo-booth-cups -p 631:631 -d tonylee31/photo-booth-cups-server:0.0.1
+
+# Temp
+sudo apt install smbclient
+smbclient -L \10.10.1.102 -U winusr1
+smb://username:password@10.10.1.102/brother_printer
 
 # Deploy Springboot API
 - Docker Build (Springboot API)<br />
@@ -54,5 +62,3 @@ Trigger Event to MQ: py _program/mq_producer.py<br />
 Receive Event from MQ: py _program/mq_consumer.py<br />
 
 ### ********** For Operation : End ********** ### 
-
-
