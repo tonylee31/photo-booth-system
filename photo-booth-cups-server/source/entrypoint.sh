@@ -18,3 +18,6 @@ if [ ! -f /etc/cups/cupsd.conf ]; then
 fi
 
 exec /usr/sbin/cupsd -f
+
+cupsctl WebInterface=yes
+cupsctl --share-printers

@@ -1,7 +1,7 @@
 FROM rabbitmq:3.13
 
 
-MAINTAINER tonylee31@yahoo.com.hk
+LABEL maintainer="tonylee31@yahoo.com.hk"
 
 
 COPY source/rabbit_mq/rabbitmq.conf /etc/rabbitmq

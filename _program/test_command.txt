@@ -1,0 +1,30 @@
+lpadmin -p Demo-printer -E -v ipp://<printer_ip_address>/ipp/print -m everywhere
+
+
+lp -d CUPS-PDF filename.txt
+
+
+lp -d CUPS-PDF filename.txt
+lp -U admin -h localhost:631 -d CUPS-PDF cups_command.txt
+
+lp -h https://localhost:631 -d CUPS-PDF cups_command.txt
+
+
+# Create a custom bridge network
+docker network create photo-booth-network
+
+# Run the first container, attaching it to my-network
+docker run -d --name my-service1 --network my-network my-image1
+
+# Run the second container, also attaching it to my-network
+docker run -d --name my-service2 --network my-network my-image2
+
+# From inside my-service1, you can now access my-service2 by its name
+# For example, if my-service2 exposes a web server on port 8000:
+# curl http://my-service2:8000
+
+
+
+
+
+docker exec -it <container-name-or-id> /bin/bash

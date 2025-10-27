@@ -1,14 +1,14 @@
 FROM debian:stable-slim
 
 
-MAINTAINER tonylee31@yahoo.com.hk
+LABEL maintainer="tonylee31@yahoo.com.hk"
 
 
 # ENV variables
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ "Asia/Hong_Kong"
 ENV CUPSADMIN admin
-ENV CUPSPASSWORD password
+ENV CUPSPASSWORD 123456
 
 
 # Expore the port number

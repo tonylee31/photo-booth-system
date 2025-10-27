@@ -9,6 +9,9 @@ services:
      ports:
       - 8080:8080
      container_name: photo-booth-api
+     hostname: photo-booth-api                           # specify your hostname here
+     networks:
+      - messaging
   photo-booth-rabbit-mq:
      #build: ./photo-booth-rabbit-mq-server
      build: 
@@ -42,12 +45,15 @@ services:
       - "TZ=Asia/Hong_Kong"
       - "DEBIAN_FRONTEND=noninteractive"
      volumes:
-      - photo-booth-cpus-volume:/etc/cups                 # use a volume to store the data
-     container_name: photo-booth-cpus
+      - photo-booth-cups-volume:/etc/cups                 # use a volume to store the data
+     container_name: photo-booth-cups
+     hostname: photo-booth-cups                             # specify your hostname here
+     networks:
+      - messaging
 volumes:
   photo-booth-rabbit-mq-volume:
     driver: local
-  photo-booth-cpus-volume:
+  photo-booth-cups-volume:
     driver: local
 networks: 
     messaging:

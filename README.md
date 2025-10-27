@@ -1,14 +1,6 @@
 ### ********** For Development : Begin ********** ###
 
-- Docker Build (Springboot API)<br />
-docker build -t tonylee31/photo-booth-api:0.0.1 .
-
-- Push Image to Docker Hub (Springboot API)<br />
-docker push tonylee31/photo-booth-api:0.0.1
-
-- Run the Docker (Springboot API)<br />
-docker run --name photo-booth-api -p 8080:8080 -d tonylee31/photo-booth-api:0.0.1
-
+# Deploy Rabbit MQ
 - Docker Build (RabbitMQ)<br />
 docker build -t tonylee31/photo-booth-rabbit-mq-server:0.0.1 .
 
@@ -18,6 +10,7 @@ docker push tonylee31/photo-booth-rabbit-mq-server:0.0.1
 - Run the Docker (RabbitMQ)<br />
 docker run --name photo-booth-mq -p 15672:15672 -p 5672:5672 -e RABBITMQ_DEFAULT_USER=admin -e RABBITMQ_DEFAULT_PASS=Abcd#1234 -d tonylee31/photo-booth-rabbit-mq-server:0.0.1 
 
+# Deploy CUPS Server
 - Docker Build (CUPS)<br />
 docker build -t tonylee31/photo-booth-cups-server:0.0.1 .
 
@@ -26,6 +19,16 @@ docker push tonylee31/photo-booth-cups-server:0.0.1
 
 - Run the Docker (CUPS)<br />
 docker run --name photo-booth-cups -p 631:631 -d tonylee31/photo-booth-cups-server:0.0.1
+
+# Deploy Springboot API
+- Docker Build (Springboot API)<br />
+docker build -t tonylee31/photo-booth-api:0.0.1 .
+
+- Push Image to Docker Hub (Springboot API)<br />
+docker push tonylee31/photo-booth-api:0.0.1
+
+- Run the Docker (Springboot API)<br />
+docker run --name photo-booth-api -p 8080:8080 -d tonylee31/photo-booth-api:0.0.1
 
 ### ********** For Development : End ********** ### 
 
